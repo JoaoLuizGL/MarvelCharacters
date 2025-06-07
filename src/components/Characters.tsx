@@ -7,7 +7,7 @@ const Characters = ({ characters }: CharactersListProps) => {
     return (
         <div className={classes.charactersContainer}>
             <div className={classes.charactersList}>
-                {characters.map(character => (
+                {characters.filter(Character => Character.total > 0).map(character => (
                     <Character
                         id={character.id}
                         name={character.name}
@@ -17,6 +17,7 @@ const Characters = ({ characters }: CharactersListProps) => {
                         series={character.series}
                         stories={character.stories}
                         events={character.events}
+                        total={character.total}
                     />
                 ))}
             </div>
