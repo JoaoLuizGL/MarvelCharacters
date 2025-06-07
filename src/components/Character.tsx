@@ -12,7 +12,7 @@ const Character = ({
 }: CharacterProps) => {
     return (
         <div className={classes.character}>
-            <h2>{name}</h2>
+            <h2 title={name}>{name}</h2>
             {image && (
                 <img
                     src={image}
@@ -20,7 +20,7 @@ const Character = ({
                     className={classes.image}
                 />
             )}
-            {description && <p>{description}</p>}
+            <p title={description}>{description}</p>
             <div className={classes.stats}>
                 <div>
                     <strong>Comics:</strong> {comics}
