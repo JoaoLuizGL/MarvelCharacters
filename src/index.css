@@ -24,12 +24,9 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
-  background: #fff;
-  color: #213547; /* texto escuro para fundo branco */
+  background: url('/background_vermelho.avif') no-repeat center center fixed;
+  background-size: cover;
 }
 
 h1 {
