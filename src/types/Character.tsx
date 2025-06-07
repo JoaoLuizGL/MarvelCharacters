@@ -7,6 +7,6 @@ export type CharacterProps = {
     series?: number;
     stories?: number;
     events?: number;
-    total: number;
+    totalMedia: number;
     // urls: string;
 }

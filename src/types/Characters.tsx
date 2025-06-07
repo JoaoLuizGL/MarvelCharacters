@@ -1,5 +1,11 @@
 import type { CharacterProps } from './Character.tsx';
 
-export type CharactersListProps = {
+type CharactersListProps = {
     characters: CharacterProps[];
 };
+
+export type CharactersProps = CharactersListProps & {
+    currentPage: number;
+    totalPages: number;
+    onPageChange: (page: number) => void;
+}
