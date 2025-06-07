@@ -7,7 +7,7 @@ function App() {
   const [count, setCount] = useState(0)
   return (
     <div className={classes.App}>
-      <img className={classes.logo} src="../public/marvel_logo.png" alt="Logo da Marvel" />
+      <img className={classes.logo} src="../marvel_logo.png" alt="Logo da Marvel" />
       <h1>Marvel Dictionary</h1>
       <Outlet />
     </div>
