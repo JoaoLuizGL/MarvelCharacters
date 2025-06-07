@@ -5,7 +5,6 @@ import Characters from "../components/Characters"; // Make sure this exists
 import type { CharacterProps } from "../types/Character";
 
 const Home: React.FC = () => {
-    const { userName } = useParams<{ userName: string }>();
     const [allCharacters, setAllCharacters] = useState<CharacterProps[]>([]);
     const [characters, setCharacters] = useState<CharacterProps[]>([]);
     const [error, setError] = useState(false);
@@ -30,7 +29,7 @@ const Home: React.FC = () => {
         const charactersData: CharacterProps[] = dados.data.results.map((character: any) => ({
             id: character.id,
             name: character.name,
-            description: character.description || 'No description available',
+            description: character.description || (`No description available for ${character.name}`),
             image: `${character.thumbnail.path}.${character.thumbnail.extension}`,
             comics: character.comics.available,
             series: character.series.available,
