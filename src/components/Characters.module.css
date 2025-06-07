@@ -1,7 +1,19 @@
 .charactersList {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem; /* ajuste o espaçamento entre os elementos se desejar */
+    gap: 1rem;
     padding: 1rem;
-    background-color: #1e2029; /* cor de fundo do container */
+}
+
+.charactersList .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.charactersContainer{
+    background-color: #1e2029;
+    padding: 1rem;
+    border-radius: 1rem;
 }
