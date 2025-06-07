@@ -1,0 +1,7 @@
+.charactersList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem; /* ajuste o espaçamento entre os elementos se desejar */
+    padding: 1rem;
+    background-color: #1e2029; /* cor de fundo do container */
+}
