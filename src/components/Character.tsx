@@ -11,7 +11,9 @@ const Character = ({
     events
 }: CharacterProps) => {
     return (
-        <div className={classes.character}>
+        <div className={classes.character}
+        onClick={() => {
+            window.open(`https://www.marvel.com/characters/${name.toLowerCase().replace(/\s+/g, '-')}`, '_blank');}}>
             <h2 title={name}>{name}</h2>
             {image && (
                 <img
