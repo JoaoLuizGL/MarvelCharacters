@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Loading.module.css";
 
 const characters = [
-  { name: "Homem de Ferro", image: "/ironman.png" },
-  { name: "Capitão América", image: "/captain.png" },
-  { name: "Thor", image: "/thor.png" },
-  { name: "Homem-Aranha", image: "/spiderman.png" },
-  { name: "Hulk", image: "/hulk.png" }
+  { name: "Homem de Ferro", image: "/loading/ironman.png" },
+  { name: "Capitão América", image: "/loading/captain.png" },
+  { name: "Thor", image: "/loading/thor.png" },
+  { name: "Homem-Aranha", image: "/loading/spiderman.png" },
+  { name: "Hulk", image: "/loading/hulk.png" }
 ];
 
 export default function Loading() {
