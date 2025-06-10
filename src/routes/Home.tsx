@@ -4,85 +4,105 @@ import Characters from "../components/Characters";
 import type { CharacterProps } from "../types/Character";
 import Error from "../components/Error";
 
-
-const limit = 40;
+const limit = 100; // pode aumentar para reduzir número de requisições
 
 const Home: React.FC = () => {
     const [allCharacters, setAllCharacters] = useState<CharacterProps[]>([]);
     const [characters, setCharacters] = useState<CharacterProps[]>([]);
-    const [offset, setOffset] = useState(0);
-    const [total, setTotal] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        loadCharacters();
-    }, [offset]);
+        fetchAllCharacters();
+    }, []);
 
-    const loadCharacters = async () => {
+    useEffect(() => {
+        paginateCharacters(allCharacters, currentPage);
+    }, [allCharacters, currentPage]);
+
+    const fetchAllCharacters = async () => {
         setError(false);
-        setCharacters([]);
-        setAllCharacters([]);
-
-        const res = await fetch(
-            `https://gateway.marvel.com/v1/public/characters?ts=jonas&apikey=81272e1a0b9f8a98fa9dd90f785074a9&hash=907952132a795d15f7da63aa81a561f1&limit=${limit}&offset=${offset}`
-        );
-        const dados = await res.json();
-
-        if (res.status !== 200) {
+        setLoading(true);
+        let all: CharacterProps[] = [];
+        let offset = 0;
+        let total = 0;
+        try {
+            do {
+                const res = await fetch(
+                    `https://gateway.marvel.com/v1/public/characters?ts=jonas&apikey=81272e1a0b9f8a98fa9dd90f785074a9&hash=907952132a795d15f7da63aa81a561f1&limit=${limit}&offset=${offset}`
+                );
+                const dados = await res.json();
+                if (res.status !== 200) {
+                    setError(true);
+                    setErrorMessage(`Error ${res.status}: ${dados.message}`);
+                    setLoading(false);
+                    return;
+                }
+                total = dados.data.total;
+                const charactersData: CharacterProps[] = dados.data.results.map((character: any) => ({
+                    id: character.id,
+                    name: character.name,
+                    description: character.description || (`No description available for ${character.name}`),
+                    image: `${character.thumbnail.path}.${character.thumbnail.extension}`,
+                    comics: character.comics.available,
+                    series: character.series.available,
+                    stories: character.stories.available,
+                    events: character.events.available,
+                    totalMedia: character.comics.available + character.series.available + character.stories.available + character.events.available
+                }));
+                all = all.concat(charactersData);
+                offset += limit;
+            } while (all.length < total);
+            setAllCharacters(all);
+            setTotalPages(Math.ceil(all.length / limit));
+            setCurrentPage(1);
+        } catch (e) {
             setError(true);
-            setErrorMessage(`Error ${res.status}: ${dados.message}`);
-            return;
+            setErrorMessage("Erro ao buscar personagens.");
         }
+        setLoading(false);
+    };
 
-        setTotal(dados.data.total);
-
-        const charactersData: CharacterProps[] = dados.data.results.map((character: any) => ({
-            id: character.id,
-            name: character.name,
-            description: character.description || (`No description available for ${character.name}`),
-            image: `${character.thumbnail.path}.${character.thumbnail.extension}`,
-            comics: character.comics.available,
-            series: character.series.available,
-            stories: character.stories.available,
-            events: character.events.available,
-            totalMedia: character.comics.available + character.series.available + character.stories.available + character.events.available
-        }));
-
-        setAllCharacters(charactersData);
-        setCharacters(charactersData);
+    const paginateCharacters = (charactersArr: CharacterProps[], page: number) => {
+        const start = (page - 1) * limit;
+        const end = start + limit;
+        setCharacters(charactersArr.slice(start, end));
     };
 
     const filterCharacters = (search: string) => {
         if (!search) {
-            setCharacters(allCharacters);
+            setTotalPages(Math.ceil(allCharacters.length / limit));
+            setCurrentPage(1);
+            paginateCharacters(allCharacters, 1);
         } else {
-            setCharacters(
-                allCharacters.filter(char =>
-                    char.name.toLowerCase().includes(search.toLowerCase())
-                )
+            const filtered = allCharacters.filter(char =>
+                char.name.toLowerCase().includes(search.toLowerCase())
             );
+            setTotalPages(Math.ceil(filtered.length / limit));
+            setCurrentPage(1);
+            paginateCharacters(filtered, 1);
         }
     };
 
-    // Paginação
-    const currentPage = Math.floor(offset / limit) + 1;
-    const totalPages = Math.ceil(total / limit);
-
     const handlePageChange = (page: number) => {
         if (page < 1 || page > totalPages) return;
-        setOffset((page - 1) * limit);
+        setCurrentPage(page);
     };
 
     return (
         <div>
             <Search onSearch={filterCharacters} />
-            <Characters
-                characters={characters}
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-            />
+            {loading ? <div>Carregando personagens...</div> :
+                <Characters
+                    characters={characters}
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                />
+            }
             <Error message={errorMessage}/>
         </div>
     );
