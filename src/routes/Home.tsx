@@ -3,8 +3,9 @@ import Search from "../components/Search";
 import Characters from "../components/Characters";
 import type { CharacterProps } from "../types/Character";
 import Error from "../components/Error";
+import MarvelLoading from "../components/Loading"; // 👈 importando o loading animado
 
-const limit = 100; // pode aumentar para reduzir número de requisições
+const limit = 100;
 
 const Home: React.FC = () => {
     const [allCharacters, setAllCharacters] = useState<CharacterProps[]>([]);
@@ -93,18 +94,19 @@ const Home: React.FC = () => {
     };
 
     return (
-        <div>
-            <Search onSearch={filterCharacters} />
-            {loading ? <div>Carregando personagens...</div> :
-                <Characters
-                    characters={characters}
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={handlePageChange}
-                />
-            }
-            <Error message={errorMessage}/>
-        </div>
+    loading ? (
+        <MarvelLoading />
+    ) : (
+        <>
+        <Search onSearch={filterCharacters} />
+        <Characters
+            characters={characters}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+        />
+        </>
+    )
     );
 };
 
