@@ -1,0 +1,31 @@
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    width: 30vh;
+    background-color: #1e2029;
+}
+
+.formGroup{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.formGroup label{
+    display: block;
+    margin-right: 0.5rem;
+    color: #fff;
+}
+
+.formGroup input{
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    background-color: #f0f0f0;
+    color: black;
+}
