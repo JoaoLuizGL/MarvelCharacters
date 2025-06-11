@@ -1,0 +1,47 @@
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e2029;
+    height: 250px;
+    width: 300px;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.formGroup{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.formGroup label{
+    display: block;
+    margin-right: 0.5rem;
+    color: #fff;
+}
+
+.formGroup input{
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.link button{
+    padding: 1rem;
+    background-color: #d31d05;
+    border-color: #d31d05;
+    border-radius: 0.5rem;
+    font-size: 100%;
+}
+
+.link button:hover{
+    background-color: #b00c00;
+    border-color: #b00c00;
+    cursor: pointer;
+}
