@@ -1,4 +1,4 @@
-import Character from './Character';
+import Character from './Character.tsx';
 import classes from './Characters.module.css';
 import type { CharactersProps } from '../../types/Characters.tsx';
 import Pag from './Pag.tsx';
