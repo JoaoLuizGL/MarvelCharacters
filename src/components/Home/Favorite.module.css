@@ -1,0 +1,9 @@
+.starDefault{
+    color: gray;
+    transition: color 0.2s;
+    }
+
+.starFavorite{
+    color: gold;
+    transition: color 0.2s;
+}

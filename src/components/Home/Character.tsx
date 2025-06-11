@@ -1,5 +1,6 @@
 import classes from './Character.module.css';
 import type { CharacterProps } from '../../types/Character';
+import Favorite from './Favorite';
 
 const Character = ({
     name,
@@ -12,8 +13,13 @@ const Character = ({
 }: CharacterProps) => {
     return (
         <div className={classes.character}
-        onClick={() => {
-            window.open(`https://www.marvel.com/characters/${name.toLowerCase().replace(/\s+/g, '-')}`, '_blank');}}>
+        onClick={() => {window.open(`https://www.marvel.com/characters/${name.toLowerCase().replace(/\s+/g, '-')}`, '_blank');}}>
+            <div
+  className={classes.favorite}
+  onClick={e => e.stopPropagation()} // impede o clique de "subir" para o card
+>
+  <Favorite />
+</div>
             <h2 title={name}>{name}</h2>
             {image && (
                 <img
