@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Search from "../components/Search";
-import Characters from "../components/Characters";
+import Search from "../components/Home/Search";
+import Characters from "../components/Home/Characters";
 import type { CharacterProps } from "../types/Character";
 import Error from "../components/Error";
-import MarvelLoading from "../components/Loading"; // 👈 importando o loading animado
+import MarvelLoading from "../components/Home/Loading"; // 👈 importando o loading animado
 
 const limit = 100;
 

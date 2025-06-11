@@ -1,5 +1,5 @@
 import classes from './Character.module.css';
-import type { CharacterProps } from '../types/Character';
+import type { CharacterProps } from '../../types/Character';
 
 const Character = ({
     name,

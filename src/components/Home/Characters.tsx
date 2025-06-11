@@ -1,6 +1,6 @@
 import Character from './Character';
 import classes from './Characters.module.css';
-import type { CharactersProps } from '../types/Characters.tsx';
+import type { CharactersProps } from '../../types/Characters.tsx';
 import Pag from './Pag.tsx';
 
 const Characters = ({ characters, currentPage, totalPages, onPageChange}: CharactersProps) => {
