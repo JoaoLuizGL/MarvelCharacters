@@ -39,3 +39,9 @@
     border-radius: 0.5rem;
     font-size: 100%;
 }
+
+.link button:hover{
+    background-color: #b00c00;
+    border-color: #b00c00;
+    cursor: pointer;
+}
