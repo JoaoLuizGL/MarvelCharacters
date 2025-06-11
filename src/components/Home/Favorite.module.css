@@ -1,9 +1,9 @@
 .starDefault{
-    color: gray;
+    color: #000000;
     transition: color 0.2s;
     }
 
 .starFavorite{
-    color: gold;
+    color: #ffcc00;
     transition: color 0.2s;
 }
