@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express from 'express';
 import { AppDataSource } from './data-source';
 import { User } from './Entities/User';
@@ -7,11 +8,18 @@ app.use(express.json());
 
 // Exemplo de rota
 app.get('/teste', (req, res) => {
-  res.send('API está funcionando!');
+  try {
+    const repo = AppDataSource.getRepository(User);
+    const user = repo.findOneBy({ id: 1 });
+    res.status(200).json(user);
+  }
+  catch (err: undefined | any) {
+    res.status(err.status || 404).json({ error: 'Usuário não encontrado' });
+  }
 });
 
 // Exemplo de rota para criar usuário
-app.post('/users', async (req, res) => {
+app.post('/user', async (req, res) => {
   try {
     const repo = AppDataSource.getRepository(User);
     const user = repo.create(req.body);

@@ -1,0 +1,1 @@
+DATABASE_URL='postgresql://Marvel_owner:****************@ep-frosty-lake-actdbpqh-pooler.sa-east-1.aws.neon.tech/Marvel?sslmode=require'
