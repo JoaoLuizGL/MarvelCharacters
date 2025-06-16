@@ -7,13 +7,13 @@ Aplicativo que consome a API da Marvel para exibir informações de personagens 
 ## 📸 Demonstração
 
 ### Lista de Personagens
-![Personagens](/public/docs/List.jpeg)
+![Personagens](/Frontend/public/docs/List.jpeg)
 
 ### Busca por nome
-![Busca por nome](/public/docs/Search.jpeg)
+![Busca por nome](/Frontend/public/docs/Search.jpeg)
 
 ### Tela de carregamento
-![Tela de carregamento](/public/docs/Loading.jpeg)
+![Tela de carregamento](/Frontend/public/docs/Loading.jpeg)
 
 
 
