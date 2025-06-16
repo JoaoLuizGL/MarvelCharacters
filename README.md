@@ -31,9 +31,10 @@ Aplicativo que consome a API da Marvel para exibir informações de personagens 
 ## 🧰 Tecnologias Utilizadas
 
 - **Linguagem:** TypeScript
-- **Framework:** React
+- **Framework:** React, Node.js (Express)
 - **Estilo:** CSS Modules
 - **API:** [Marvel Developer API](https://developer.marvel.com/)
+- **Banco de Dados:** PostgreSQL (Neon)
 
 ---
 
